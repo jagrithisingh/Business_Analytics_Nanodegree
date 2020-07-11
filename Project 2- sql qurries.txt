@@ -1,0 +1,42 @@
+1.Ques: Number of tracks of each genre and maximum.
+
+SELECT t.GenreId, g.Name, COUNT (t.GenreId)
+FROM Track t
+JOIN Genre g
+ON t.GenreId=g.GenreId
+GROUP BY 1
+ORDER BY 3 DESC 
+
+2.Ques: Number of tracks in different playlists.
+
+SELECT p.Name, count(p.name)
+FROM Track t
+JOIN PlaylistTrack pt
+ON t.TrackId=pt.TrackId
+JOIN Playlist p
+ON pt.PlaylistId=p.PlaylistId
+GROUP BY 1
+ORDER BY 2 DESC
+
+3.Ques: The number of customers each customer support employee is attending to.
+
+SELECT c.SupportRepId, e.FirstName, e.LastName, COUNT(c.SupportRepID)
+FROM Customer c
+JOIN Employee e
+ON c.SupportRepId=e.EmployeeId
+GROUP BY 1
+ORDER BY 3 DESC
+
+4.Ques: Top 5 most selling tracks
+
+SELECT t.Name, count(t.Name) 
+FROM Invoice i
+JOIN InvoiceLine il
+ON i.InvoiceId=il.InvoiceId
+JOIN Track t
+ON il.TrackId=t.TrackId
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 5
+
+
